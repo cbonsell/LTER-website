@@ -80,6 +80,7 @@ address {
 }
 
 footer {
+   border-top: 3px solid rgb(227, 242, 250);
    margin-top: 3em;
 }
 
