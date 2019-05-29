@@ -43,6 +43,7 @@
 
       /* small screens */
       @media (max-width: 768px) {
+
          /* override stickyness so that the navigation does not follow scrolling */
          nav[data-toggle="toc"] {
             margin-bottom: 42px;
@@ -55,33 +56,42 @@
             display: none;
          }*/
          /* alternatively, if you *do* want the second-level navigation to be shown (as seen on this page on mobile), use this */
-         
+
          nav[data-toggle='toc'] .nav .nav {
             display: block;
-         }         
+         }
       }
 
       /* some space for the fixed header */
-      h2::before, h3::before, h4::before, h5::before, h6::before {
+      h2::before,
+      h3::before,
+      h4::before,
+      h5::before,
+      h6::before {
          display: block;
          content: " ";
          height: 3.5em;
          margin-top: -2em;
          visibility: hidden;
-      }      
+      }
 
       /* overrides */
-      nav[data-toggle="toc"] .nav > li > a {
+      nav[data-toggle="toc"] .nav>li>a {
          font-size: 15px;
       }
-      nav[data-toggle="toc"] .nav-link.active, nav[data-toggle="toc"] .nav-link.active:focus, nav[data-toggle="toc"] .nav-link.active:hover {
+
+      nav[data-toggle="toc"] .nav-link.active,
+      nav[data-toggle="toc"] .nav-link.active:focus,
+      nav[data-toggle="toc"] .nav-link.active:hover {
          border-left: 2px solid #0d3760;
          color: #0d3760;
       }
-      nav[data-toggle="toc"] .nav .nav > li > a {
+
+      nav[data-toggle="toc"] .nav .nav>li>a {
          font-size: 13px;
       }
    </style>
+
 <body>
    <header>
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-darkest">
@@ -139,15 +149,21 @@
          <div class="col-md-9">
             <h1>BLE Information Management System</h1>
             <p class="lead">The BLE IMS uses modular components and relies on external APIs and open source resources to
-               minimize development burden and promote reusability. We welcome discussion and feedback on our system, and we
-               love collaborating with other information managers on improving the state of IM in LTER. See <a href="https://github.com/BLE-LTER/" target="_blank" rel="noopener">what we&apos;re up to on GitHub</a>, and
+               minimize development burden and promote reusability. We welcome discussion and feedback on our system,
+               and we
+               love collaborating with other information managers on improving the state of IM in LTER. See <a
+                  href="https://github.com/BLE-LTER/" target="_blank" rel="noopener">what we&apos;re up to on
+                  GitHub</a>, and
                take a peek into our information
                management system below.
             </p>
 
             <h2 id="datasets">Managing Datasets</h2>
-            <p class="lead">We keep track of datasets submitted by the BLE team using a Postgres database based on the <a href="https://github.com/lter/LTER-core-metabase" target="_blank" rel="noopener">LTER Core Metabase</a>
-               schema. This database is designed to be simple and extensible while supporting the creation of EML metadata
+            <p class="lead">We keep track of datasets submitted by the BLE team using a Postgres database based on the
+               <a href="https://github.com/lter/LTER-core-metabase" target="_blank" rel="noopener">LTER Core
+                  Metabase</a>
+               schema. This database is designed to be simple and extensible while supporting the creation of EML
+               metadata
                for datasets described therein. To interact with the database, we like the free DBeaver software.
             </p>
 
@@ -155,66 +171,96 @@
             <p class="lead">
                When a scientist on our team submits data, they include a spreadsheet modeled after tables in our Core
                Metabase to provide metadata. The spreadsheet includes validation and other forms of guidance to help the
-               scientist supply rich metadata. <a href="https://utexas.box.com/v/ble-metadata-template" target="_blank" rel="noopener">Download our metadata template, instructions, and a
+               scientist supply rich metadata. <a href="https://utexas.box.com/v/ble-metadata-template" target="_blank"
+                  rel="noopener">Download our metadata template, instructions, and a
                   sample dataset here</a>.</p>
             <p class="lead">Our IM team evaluates the data and metadata and iterates with the scientist as
-               needed. When the metadata are satisfactory, the IM appends records from the spreadsheet to the Core Metabase.
+               needed. When the metadata are satisfactory, the IM appends records from the spreadsheet to the Core
+               Metabase.
             </p>
             <h2 id="eml">Generating EML</h2>
-            <p class="lead">We use an <a href="https://github.com/atn38/rMetabase2eml" target="_blank" rel="noopener">open
-                  source set of R scripts</a> to generate EML from our Core Metabase. Eventually we would like to tie this
+            <p class="lead">We use an <a href="https://github.com/atn38/rMetabase2eml" target="_blank"
+                  rel="noopener">open
+                  source set of R scripts</a> to generate EML from our Core Metabase. Eventually we would like to tie
+               this
                into the <a href="https://github.com/EDIorg/EMLassemblyline" target="_blank" rel="noopener">EML Assembly
                   Line</a>.</p>
             <h2 id="website">Our Website</h2>
             <p class="lead">Our static HTML website is built purely with HTML, CSS, and JavaScript, and costs us $0 to
-               operate annually (yes, zero). You can literally download <a href="https://github.com/BLE-LTER/LTER-website" target="_blank" rel="noopener">our website on GitHub</a> and double-click index.html to run it from your
+               operate annually (yes, zero). You can literally download <a
+                  href="https://github.com/BLE-LTER/LTER-website" target="_blank" rel="noopener">our website on
+                  GitHub</a> and double-click index.html to run it from your
                local computer. We gladly take advantage of the following technologies.</p>
             <h3 id="catalog">Data Catalog</h3>
-            <p class="lead">Rather than maintain our own online database with search functionality and metadata display, we
+            <p class="lead">Rather than maintain our own online database with search functionality and metadata display,
+               we use an API to tap into the Environmental Data Initiative's (EDI) catalog where we archive our data.
+               Naturally, this keeps our website in sync with our official archive. However, this may not work as well
+               for you if metadata for your datasets is maintained at disparate archives.</p>
             <p class="lead">Check out these links for example clients including live demos:</p>
             <ul class="lead">
-               <li><a href="https://github.com/BLE-LTER/PASTA-JavaScript-Search-Client" target="_blank" rel="noopener">PASTA
+               <li><a href="https://github.com/BLE-LTER/PASTA-JavaScript-Search-Client" target="_blank"
+                     rel="noopener">PASTA
                      Client</a> - for sites that archive with EDI</li>
-               <li><a href="https://github.com/BLE-LTER/Solr-JavaScript-Search-Client" target="_blank" rel="noopener">Solr
+               <li><a href="https://github.com/BLE-LTER/Solr-JavaScript-Search-Client" target="_blank"
+                     rel="noopener">Solr
                      Client</a> - for sites that archive with DataOne nodes such as the Arctic Data Center</li>
             </ul>
             <h3 id="bib">Bibliography</h3>
-            <p class="lead">We use Zotero as our reference manager, which includes a desktop client, browser plugin, and API
-               for searching your Zotero collection in the cloud. Our website uses the <a href="https://github.com/BLE-LTER/Zotero-JavaScript-Search-Client" target="_blank" rel="noopener">Zotero
+            <p class="lead">We use Zotero as our reference manager, which includes a desktop client, browser plugin, and
+               API
+               for searching your Zotero collection in the cloud. Our website uses the <a
+                  href="https://github.com/BLE-LTER/Zotero-JavaScript-Search-Client" target="_blank"
+                  rel="noopener">Zotero
                   JavaScript Client</a> to display items from our bibliography.</p>
             <h3 id="site-search">Site Search</h3>
-            <p class="lead">While there are some interesting service-based search services out there, we went with Lunr for
-               static search on our website. Our <a href="https://github.com/BLE-LTER/Lunr-Index-and-Search-for-Static-Sites" target="_blank" rel="noopener">Lunr GitHub Project</a> demonstrates how to build a search index for your
-               website and provide search functionality. It seems to work well for small sites, but performance may suffer if
-               you index more than 1000 pages. We like that the search interface is encapsulated within our site without any
+            <p class="lead">While there are some interesting service-based search services out there, we went with Lunr
+               for
+               static search on our website. Our <a
+                  href="https://github.com/BLE-LTER/Lunr-Index-and-Search-for-Static-Sites" target="_blank"
+                  rel="noopener">Lunr GitHub Project</a> demonstrates how to build a search index for your
+               website and provide search functionality. It seems to work well for small sites, but performance may
+               suffer if
+               you index more than 1000 pages. We like that the search interface is encapsulated within our site without
+               any
                external branding.</p>
             <h3>Going Serverless</h3>
-            <p class="lead">By relying on external APIs and sticking with static HTML, we can implement our website without
+            <p class="lead">By relying on external APIs and sticking with static HTML, we can implement our website
+               without
                having to maintain any servers.
-               This means we don&apos;t incur the operating cost of a dynamic server (unlike WordPress or Drupal sites for
+               This means we don&apos;t incur the operating cost of a dynamic server (unlike WordPress or Drupal sites
+               for
                example), and we aren&apos;t plagued by dynamic CMS security flaws.</p>
-            <p class="lead">There are lots of free hosts for static websites. We like <a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a> the best. They minify our assets to improve page load times,
-               provide HTTPS, and host our site on a content delivery network with servers distributed around the world to
+            <p class="lead">There are lots of free hosts for static websites. We like <a href="https://www.netlify.com/"
+                  target="_blank" rel="noopener">Netlify</a> the best. They minify our assets to improve page load
+               times,
+               provide HTTPS, and host our site on a content delivery network with servers distributed around the world
+               to
                maximize uptime and speed, among other benefits. As soon as we make a new commit to our site on GitHub,
-               Netlify picks it up and distributes it across their network. They also support forms, functions, and secure
+               Netlify picks it up and distributes it across their network. They also support forms, functions, and
+               secure
                logins, though we haven&apos;t played with those features yet.</p>
             <h3 id="future">Thinking Ahead</h3>
             <p class="lead">Eventually we may adopt a static site generator to assist with page creation and website
-               redesign. For now we use a simple script to update headers, footers, and navigation across the entire site
+               redesign. For now we use a simple script to update headers, footers, and navigation across the entire
+               site
                when needed.</p>
             <h2 id="people">People Power</h2>
-            <p class="lead">Our IMS would be nothing without the skills, dedication, and enthusiasm of our team, both on the
+            <p class="lead">Our IMS would be nothing without the skills, dedication, and enthusiasm of our team, both on
+               the
                IM side and the domain science side. This system works because our scientists are willing and able to
                incorporate information management into their workflows up front (e.g., by using simple data tables), and
-               because there is open, friendly, and regular dialog between scientists and information managers within BLE.</p>
-            <p class="lead">Our IM team enjoys extending that dialog into the broader LTER community. If you are facing an IM
-               challenge involving GIS, Python, or any part of the stack described above, feel free to <a href="mailto:BLE-IM@utexas.edu">contact
+               because there is open, friendly, and regular dialog between scientists and information managers within
+               BLE.</p>
+            <p class="lead">Our IM team enjoys extending that dialog into the broader LTER community. If you are facing
+               an IM
+               challenge involving GIS, Python, or any part of the stack described above, feel free to <a
+                  href="mailto:BLE-IM@utexas.edu">contact
                   us</a>.</p>
          </div>
       </div>
-               datasets is maintained at disparate archives.</p>
-               website in sync with our official archive. However, this may not work as well for you if metadata for your
-               use an API to tap into the Arctic Data Center catalog where we archive our data. Naturally, this keeps our
+      datasets is maintained at disparate archives.</p>
+      website in sync with our official archive. However, this may not work as well for you if metadata for your
+      use an API to tap into the Arctic Data Center catalog where we archive our data. Naturally, this keeps our
    </div>
 
    <footer class="lighter">
@@ -287,9 +333,10 @@
       <script async src="js/app.js"></script>
    </div>
 
-   <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script></head>
+   <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script>
+   </head>
    <script>
-      $(function() {
+      $(function () {
          var navSelector = "#toc";
          var $myNav = $(navSelector);
          Toc.init($myNav);
@@ -299,4 +346,6 @@
       });
    </script>
 
-</body></html>
+</body>
+
+</html>
